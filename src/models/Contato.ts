@@ -1,12 +1,12 @@
 class Contato {
-  nome: string
+  nomeCompleto: string
   email: string
   telefone: string
   id: number
   editando: boolean = false
 
-  constructor(nome: string, email: string, telefone: string, id: number) {
-    this.nome = nome
+  constructor(nomeCompleto: string, email: string, telefone: string, id: number) {
+    this.nomeCompleto = nomeCompleto
     this.email = email
     this.telefone = telefone
     this.id = id
