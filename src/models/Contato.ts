@@ -12,3 +12,5 @@ class Contato {
     this.id = id
   }
 }
+
+export default Contato
