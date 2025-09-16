@@ -1,4 +1,5 @@
 "use client"
+
 import BotaoAdicionar from "../../components/BotaoAdicionar"
 import BarraLateral from "../../containers/BarraLateral"
 import ListaDeContatos from "../../containers/ListaDeTarefas"

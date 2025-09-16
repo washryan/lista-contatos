@@ -1,3 +1,5 @@
+"use client"
+
 import BarraLateral from '../../containers/BarraLateral'
 import Formulario from '../../containers/Formulario'
 

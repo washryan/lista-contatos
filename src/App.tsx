@@ -1,4 +1,5 @@
 "use client"
+
 import { Provider } from "react-redux"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import { useEffect, useState } from "react"

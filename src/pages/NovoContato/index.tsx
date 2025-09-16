@@ -1,3 +1,5 @@
+"use client"
+
 import { MainContainer, Titulo } from '../../styles'
 import FormularioContato from '../../containers/FormularioContato'
 

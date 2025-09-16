@@ -1,4 +1,5 @@
 "use client"
+
 import { useSelector } from "react-redux"
 
 import Contato from "../../components/Contato"
