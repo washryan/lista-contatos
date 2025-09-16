@@ -2,8 +2,11 @@
 
 import dynamic from "next/dynamic"
 
-const App = dynamic(() => import("../src/App"), { ssr: false })
+const ReactApp = dynamic(() => import("../src/App"), {
+  ssr: false,
+  loading: () => <div>Carregando...</div>,
+})
 
 export default function Home() {
-  return <App />
+  return <ReactApp />
 }

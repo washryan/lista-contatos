@@ -1,15 +1,13 @@
 "use client"
 
-import BotaoAdicionar from "../../components/BotaoAdicionar"
-import BarraLateral from "../../containers/BarraLateral"
-import ListaDeContatos from "../../containers/ListaDeTarefas"
+import { MainContainer, Titulo } from "../../styles"
+import FormularioContato from "../../containers/FormularioContato"
 
-const Home = () => (
-  <>
-    <BarraLateral mostrarFiltros />
-    <ListaDeContatos />
-    <BotaoAdicionar />
-  </>
+const NovoContato = () => (
+  <MainContainer>
+    <Titulo>Novo contato</Titulo>
+    <FormularioContato />
+  </MainContainer>
 )
 
-export default Home
+export default NovoContato

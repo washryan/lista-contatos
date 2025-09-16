@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 export const Card = styled.div`
   background-color: #fcfcfc;
@@ -6,45 +6,32 @@ export const Card = styled.div`
   padding: 16px;
   margin-bottom: 32px;
   border-radius: 16px;
-  border-left: 8px solid #2f3640;
 
   label {
-    display: inline-block;
-    margin-bottom: 8px;
-    margin-top: 16px;
-    font-weight: bold;
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
   }
 `
 
 export const Titulo = styled.h3`
   font-weight: bold;
   font-size: 18px;
+  color: #222222;
   margin-bottom: 16px;
-`
-
-export const Tag = styled.span`
-  padding: 4px 8px;
-  color: #fff;
-  font-weight: bold;
-  font-size: 10px;
-  background-color: #e74c3c;
-  border-radius: 8px;
-  margin-right: 16px;
-  display: inline-block;
 `
 
 export const Descricao = styled.textarea`
   color: #8b8b8b;
   font-size: 14px;
   line-height: 24px;
-  font-family: 'Roboto Mono', monospace;
+  font-family: "Roboto Mono", monospace;
   display: block;
   width: 100%;
   margin-bottom: 16px;
-  margin-top: 8px;
   resize: none;
   border: none;
-  background-color: transparent;
+  background: transparent;
 `
 
 export const BarraAcoes = styled.div`
@@ -65,9 +52,9 @@ export const Botao = styled.button`
 `
 
 export const BotaoSalvar = styled(Botao)`
-  background-color: #27ae60;
+  background-color: #44bd32;
 `
 
 export const BotaoCancelarRemover = styled(Botao)`
-  background-color: #e74c3c;
+  background-color: #c23616;
 `

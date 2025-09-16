@@ -1,45 +1,54 @@
 "use client"
-
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
-import FiltroCard from "../../components/FiltroCard"
-import type { RootReducer } from "../../store"
+import type { RootState } from "../../store"
 import { alterarTermo } from "../../store/reducers/filtro"
 
 import * as S from "./styles"
-import { Botao, Campo } from "../../styles"
+import { Campo } from "../../styles"
 
 type Props = {
-  mostrarFiltros: boolean
+  mostrarFiltros?: boolean
 }
 
 const BarraLateral = ({ mostrarFiltros }: Props) => {
-  const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { termo } = useSelector((state: RootReducer) => state.filtro)
+  const navigate = useNavigate()
+  const { termo } = useSelector((state: RootState) => state.filtro)
+  const { itens } = useSelector((state: RootState) => state.contatos)
+
+  const filtrados = itens.filter(
+    (item) =>
+      item.nomeCompleto.toLowerCase().search(termo.toLowerCase()) >= 0 ||
+      item.email.toLowerCase().search(termo.toLowerCase()) >= 0 ||
+      item.telefone.search(termo) >= 0,
+  )
 
   return (
     <S.Aside>
       <div>
+        <S.Titulo>Lista de Contatos</S.Titulo>
         {mostrarFiltros ? (
           <>
             <Campo
               type="text"
-              placeholder="Buscar"
+              placeholder="Buscar contato"
               value={termo}
               onChange={(evento) => dispatch(alterarTermo(evento.target.value))}
             />
             <S.Filtros>
-              <FiltroCard criterio="nome" legenda="por nome" />
-              <FiltroCard criterio="email" legenda="por email" />
-              <FiltroCard criterio="todas" legenda="todos" />
+              <S.Filtro>
+                <S.Contador>{filtrados.length}</S.Contador>
+                <S.Label>contatos encontrados</S.Label>
+              </S.Filtro>
             </S.Filtros>
           </>
         ) : (
-          <Botao onClick={() => navigate("/")}>Voltar a lista de contatos</Botao>
+          <S.BotaoVoltar onClick={() => navigate("/")}>← Voltar à lista de contatos</S.BotaoVoltar>
         )}
       </div>
+      <S.Botao onClick={() => navigate("/novo")}>Novo contato</S.Botao>
     </S.Aside>
   )
 }

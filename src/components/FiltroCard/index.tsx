@@ -3,7 +3,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { alterarFiltro } from "../../store/reducers/filtro"
 import * as S from "./styles"
-import type { RootReducer } from "../../store"
+import type { RootState } from "../../store"
 
 export type Props = {
   legenda: string
@@ -13,7 +13,7 @@ export type Props = {
 
 const FiltroCard = ({ legenda, criterio, valor }: Props) => {
   const dispatch = useDispatch()
-  const { filtro, contatos } = useSelector((state: RootReducer) => state)
+  const { filtro, contatos } = useSelector((state: RootState) => state)
 
   const verificaEstaAtivo = () => {
     const mesmoCriterio = filtro.criterio === criterio
@@ -25,11 +25,11 @@ const FiltroCard = ({ legenda, criterio, valor }: Props) => {
   const contarContatos = () => {
     if (criterio === "todas") return contatos.itens.length
     if (criterio === "nome") {
-      return contatos.itens.filter((item) => item.nomeCompleto.toLowerCase().includes((valor || "").toLowerCase()))
+      return contatos.itens.filter((item: any) => item.nomeCompleto.toLowerCase().includes((valor || "").toLowerCase()))
         .length
     }
     if (criterio === "email") {
-      return contatos.itens.filter((item) => item.email.toLowerCase().includes((valor || "").toLowerCase())).length
+      return contatos.itens.filter((item: any) => item.email.toLowerCase().includes((valor || "").toLowerCase())).length
     }
     return 0
   }

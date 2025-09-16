@@ -2,7 +2,7 @@
 
 import BarraPesquisa from "../../components/BarraPesquisa"
 import BotaoAdicionar from "../../components/BotaoAdicionar"
-import ListaDeContatos from "../../containers/ListaDeTarefas"
+import ListaDeContatos from "../../containers/ListaDeContatos"
 
 const Contatos = () => (
   <>

@@ -1,25 +1,34 @@
 "use client"
 
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux"
 
-import Contato from '../../components/Contato'
-import type { RootReducer } from '../../store'
+import Contato from "../../components/Contato"
+import { MainContainer, Titulo } from "../../styles"
 
-import * as S from './styles'
+import type { RootState } from "../../store"
 
 const ListaDeContatos = () => {
-  const { itens } = useSelector((state: RootReducer) => state.contatos)
-  const { termo } = useSelector((state: RootReducer) => state.filtro)
+  const { itens } = useSelector((state: RootState) => state.contatos)
+  const { termo, criterio, valor } = useSelector((state: RootState) => state.filtro)
 
   const filtraContatos = () => {
     let contatosFiltrados = itens
     if (termo !== undefined) {
       contatosFiltrados = contatosFiltrados.filter(
-        (item) =>
+        (item: any) =>
           item.nomeCompleto.toLowerCase().search(termo.toLowerCase()) >= 0 ||
-          item.email.toLowerCase().search(termo.toLowerCase()) >= 0 ||
-          item.telefone.toLowerCase().search(termo.toLowerCase()) >= 0
+          item.email.toLowerCase().search(termo.toLowerCase()) >= 0,
       )
+
+      if (criterio === "nome") {
+        contatosFiltrados = contatosFiltrados.filter((item: any) =>
+          item.nomeCompleto.toLowerCase().includes((valor || "").toLowerCase()),
+        )
+      } else if (criterio === "email") {
+        contatosFiltrados = contatosFiltrados.filter((item: any) =>
+          item.email.toLowerCase().includes((valor || "").toLowerCase()),
+        )
+      }
 
       return contatosFiltrados
     } else {
@@ -28,14 +37,13 @@ const ListaDeContatos = () => {
   }
 
   const exibeResultadoFiltragem = (quantidade: number) => {
-    let mensagem = ''
-    const complemento =
-      termo !== undefined && termo.length > 0 ? `e "${termo}"` : ''
+    let mensagem = ""
+    const complementacao = termo !== undefined && termo.length > 0 ? `e "${termo}"` : ""
 
-    if (complemento) {
-      mensagem = `${quantidade} contato(s) encontrado(s) como: ${complemento}`
+    if (criterio === "todas") {
+      mensagem = `${quantidade} contato(s) encontrado(s) como: todos ${complementacao}`
     } else {
-      mensagem = `${quantidade} contato(s) encontrado(s)`
+      mensagem = `${quantidade} contato(s) encontrado(s) como: "${criterio}=${valor}" ${complementacao}`
     }
 
     return mensagem
@@ -45,21 +53,16 @@ const ListaDeContatos = () => {
   const mensagem = exibeResultadoFiltragem(contatos.length)
 
   return (
-    <S.Container>
-      <S.Titulo as="p">{mensagem}</S.Titulo>
+    <MainContainer>
+      <Titulo as="p">{mensagem}</Titulo>
       <ul>
-        {contatos.map((c) => (
-          <li key={c.nomeCompleto}>
-            <Contato
-              id={c.id}
-              nomeCompleto={c.nomeCompleto}
-              email={c.email}
-              telefone={c.telefone}
-            />
+        {contatos.map((c: any) => (
+          <li key={c.id}>
+            <Contato id={c.id} nomeCompleto={c.nomeCompleto} email={c.email} telefone={c.telefone} />
           </li>
         ))}
       </ul>
-    </S.Container>
+    </MainContainer>
   )
 }
 
