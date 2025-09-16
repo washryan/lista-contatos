@@ -3,7 +3,7 @@ class Contato {
   email: string
   telefone: string
   id: number
-  editando?: boolean // <-- agora é opcional
+  editando?: boolean
 
   constructor(nomeCompleto: string, email: string, telefone: string, id: number, editando: boolean = false) {
     this.nomeCompleto = nomeCompleto

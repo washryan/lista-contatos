@@ -1,7 +1,7 @@
 "use client"
-import { useEffect, useState } from "react"
 import { Provider } from "react-redux"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import { useEffect, useState } from "react"
 
 import EstiloGlobal, { Container } from "./styles"
 import store from "./store"
@@ -24,7 +24,7 @@ function App() {
     <Provider store={store}>
       <EstiloGlobal />
       <Container>
-        {isClient ? <RouterProvider router={rotas} /> : null}
+        {isClient && <RouterProvider router={rotas} />}
       </Container>
     </Provider>
   )
