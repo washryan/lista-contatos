@@ -1,4 +1,5 @@
-import styled, { createGlobalStyle } from "styled-components"
+import styled, { createGlobalStyle } from 'styled-components'
+import variaveis from './variaveis'
 
 const EstiloGlobal = createGlobalStyle`
   * {
@@ -8,16 +9,25 @@ const EstiloGlobal = createGlobalStyle`
     font-family: Roboto, sans-serif;
     list-style: none;
   }
-
-  body {
-    background-color: ${(props) => props.theme.corDeFundo};
-    color: ${(props) => props.theme.corPrincipal};
-  }
 `
 
 export const Container = styled.div`
   display: grid;
   grid-template-columns: 224px auto;
+`
+
+export const MainContainer = styled.main`
+  padding: 0 40px;
+  height: 100vh;
+  overflow-y: scroll;
+`
+
+export const Titulo = styled.h2`
+  display: block;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  font-size: 18px;
+  font-weight: bold;
 `
 
 export const Campo = styled.input`
@@ -28,19 +38,7 @@ export const Campo = styled.input`
   color: #666666;
   border-color: #666666;
   width: 100%;
-  margin-bottom: 16px;
 `
-
-export const Titulo = styled.h2`
-  display: block;
-  margin-top: 40px;
-  margin-bottom: 40px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #999999;
-`
-
-export const MainContainer = Container
 
 export const Botao = styled.button`
   font-weight: bold;
@@ -49,13 +47,13 @@ export const Botao = styled.button`
   padding: 8px 12px;
   border: none;
   cursor: pointer;
-  background-color: #2f3640;
+  background-color: ${variaveis.azulEscuro};
   border-radius: 8px;
   margin-right: 8px;
 `
 
 export const BotaoSalvar = styled(Botao)`
-  background-color: ${(props) => props.theme.corPrincipal};
+  background-color: ${variaveis.verde};
 `
 
 export default EstiloGlobal

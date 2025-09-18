@@ -1,17 +1,4 @@
-import styled from "styled-components"
-
-export const Container = styled.main`
-  height: 100vh;
-  padding: 0 40px;
-`
-
-export const Titulo = styled.h2`
-  display: block;
-  margin-top: 40px;
-  margin-bottom: 40px;
-  font-size: 18px;
-  font-weight: bold;
-`
+import styled from 'styled-components'
 
 export const Form = styled.form`
   max-width: 547px;
@@ -26,14 +13,19 @@ export const Form = styled.form`
   }
 `
 
-export const BotaoSalvar = styled.button`
-  background-color: #44bd32;
-  border-radius: 8px;
-  padding: 8px 12px;
-  font-size: 12px;
-  font-weight: bold;
-  color: #fff;
-  cursor: pointer;
-  border: none;
-  margin-right: 8px;
+export const Opcoes = styled.div`
+  margin-bottom: 16px;
+
+  p {
+    margin-bottom: 6px;
+  }
+
+  label {
+    margin-right: 6px;
+  }
+`
+
+export const Opcao = styled.div`
+  display: inline;
+  text-transform: capitalize;
 `

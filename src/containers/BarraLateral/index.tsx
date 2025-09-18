@@ -1,54 +1,67 @@
-"use client"
-import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
-import type { RootState } from "../../store"
-import { alterarTermo } from "../../store/reducers/filtro"
+import FiltroCard from '../../components/FiltroCard'
+import { RootReducer } from '../../store'
+import { alterarTermo } from '../../store/reducers/filtro'
 
-import * as S from "./styles"
-import { Campo } from "../../styles"
+import * as S from './styles'
+import * as enums from '../../utils/enums/Tarefa'
+import { Botao, Campo } from '../../styles'
 
 type Props = {
-  mostrarFiltros?: boolean
+  mostrarFiltros: boolean
 }
 
 const BarraLateral = ({ mostrarFiltros }: Props) => {
-  const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { termo } = useSelector((state: RootState) => state.filtro)
-  const { itens } = useSelector((state: RootState) => state.contatos)
-
-  const filtrados = itens.filter(
-    (item) =>
-      item.nomeCompleto.toLowerCase().search(termo.toLowerCase()) >= 0 ||
-      item.email.toLowerCase().search(termo.toLowerCase()) >= 0 ||
-      item.telefone.search(termo) >= 0,
-  )
+  const dispatch = useDispatch()
+  const { termo } = useSelector((state: RootReducer) => state.filtro)
 
   return (
     <S.Aside>
       <div>
-        <S.Titulo>Lista de Contatos</S.Titulo>
         {mostrarFiltros ? (
           <>
             <Campo
               type="text"
-              placeholder="Buscar contato"
+              placeholder="Buscar"
               value={termo}
               onChange={(evento) => dispatch(alterarTermo(evento.target.value))}
             />
             <S.Filtros>
-              <S.Filtro>
-                <S.Contador>{filtrados.length}</S.Contador>
-                <S.Label>contatos encontrados</S.Label>
-              </S.Filtro>
+              <FiltroCard
+                valor={enums.Status.PENDENTE}
+                criterio="status"
+                legenda="pendentes"
+              />
+              <FiltroCard
+                valor={enums.Status.CONCLUIDA}
+                criterio="status"
+                legenda="concluídas"
+              />
+              <FiltroCard
+                valor={enums.Prioridade.URGENTE}
+                criterio="prioridade"
+                legenda="urgentes"
+              />
+              <FiltroCard
+                valor={enums.Prioridade.IMPORTANTE}
+                criterio="prioridade"
+                legenda="importantes"
+              />
+              <FiltroCard
+                valor={enums.Prioridade.NORMAL}
+                criterio="prioridade"
+                legenda="normal"
+              />
+              <FiltroCard criterio="todas" legenda="todas" />
             </S.Filtros>
           </>
         ) : (
-          <S.BotaoVoltar onClick={() => navigate("/")}>← Voltar à lista de contatos</S.BotaoVoltar>
+          <Botao onClick={() => navigate('/')}>Voltar a lista de tarefas</Botao>
         )}
       </div>
-      <S.Botao onClick={() => navigate("/novo")}>Novo contato</S.Botao>
     </S.Aside>
   )
 }
